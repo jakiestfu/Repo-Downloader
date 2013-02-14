@@ -16,7 +16,6 @@ $repoDL->download(array(
     'repo'   => 'YourRepoName',
     'saveAs' => 'myRepo-latest.zip'
 ));
+```
 
 Calling the `download` function will download the Zip file of the specified repo. Access token is required as this uses GitHubs API
-
-```
