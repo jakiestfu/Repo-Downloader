@@ -11,10 +11,10 @@ require 'RepoDownloader.php';
 $repoDL = new RepoDownloader();
 
 $repoDL->download(array(
-  'user' => 'jakiestfu',
-	'token' => 'your-access-token',
-	'repo' => 'YourRepoName',
-	'saveAs' => 'myRepo-latest.zip'
+    'user'   => 'jakiestfu',
+    'token'  => 'your-access-token',
+    'repo'   => 'YourRepoName',
+    'saveAs' => 'myRepo-latest.zip'
 ));
 
 Calling the `download` function will download the Zip file of the specified repo. Access token is required as this uses GitHubs API
