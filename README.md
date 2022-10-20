@@ -9,13 +9,25 @@ A small PHP class to download repo zipballs from GitHub
 require 'RepoDownloader.php';
 
 $repoDL = new RepoDownloader();
-
-$repoDL->download(array(
+$result = $repoDL -> download([
     'user'   => 'jakiestfu',
     'token'  => 'your-access-token',
     'repo'   => 'YourRepoName',
-    'saveAs' => 'myRepo-latest.zip'
-));
+    'saveAs' => 'myRepo-latest.zip',
+	
+	//download branch (i.e. 'master' or 'main')
+	'branch' => 'master',
+
+	//download size progress callback (i.e. Closure|callable method)
+	'progress' => function($size, $total=0, $done=false){
+		if ($done && !$total) $total = $size;
+		if ($total) echo '- progress: ' . ($size/$total*100) . '%';
+		else echo '- progress: ' . $size . ' bytes (indeterminate)';
+		@ob_flush();
+		@flush();
+	},
+], $error);
+if ($result === false) echo $error;
 ```
 
 Calling the `download` function will download the Zip file of the specified repo. Access token is required as this uses GitHubs API
